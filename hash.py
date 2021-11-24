@@ -23,15 +23,21 @@ if args.e and args.d:
     print("You cannot have both encrypting and decrypting option at the same time")
     quit()
 elif args.e:
-    data = open(args.read, "r").read()
+    with open(args.read, "r") as fileToRead:
+        data = fileToRead.read()
+
     dataAfter = base64.b64encode(bytes(data, 'utf-8'))
     fileToWrite = open(args.write, "wb")
 elif args.d:
-    data = open(args.read, "rb").read()
+    with open(args.read, "rb") as fileToRead:
+        data = fileToRead.read()
+
     dataAfter = base64.b64decode(data)
     fileToWrite = open(args.write, "wb")
 else:
-    data = open(args.read, "r").read()
+    with open(args.read, "r") as fileToRead:
+        data = fileToRead.read()
+
     dataAfter = base64.b64encode(data)
     fileToWrite = open(args.write, "wb")
 
